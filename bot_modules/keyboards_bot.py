@@ -1,20 +1,15 @@
-import aiogram 
-from .buttons_bot import button_users, button_delete_user, button_set_admin, button_cart, button_products, button_add_product
+import aiogram
+from .buttons_bot import start_game, list_inline_buttons
 
+main_keyboard = aiogram.types.ReplyKeyboardMarkup(
+    keyboard= [[start_game]],
+    one_time_keyboard= True
+)
 
-inline_keyboard= aiogram.types.InlineKeyboardMarkup(
-    inline_keyboard=[
-        [button_users, button_products],
-        [button_cart, button_add_product]
+inline_main_keyboard = aiogram.types.InlineKeyboardMarkup(
+    inline_keyboard = [
+        [list_inline_buttons[0], list_inline_buttons[1], list_inline_buttons[2]],
+        [list_inline_buttons[3], list_inline_buttons[4], list_inline_buttons[5]],
+        [list_inline_buttons[6], list_inline_buttons[7], list_inline_buttons[8]]
     ]
 )
-user_inline_keyboard = aiogram.types.InlineKeyboardMarkup(
-    inline_keyboard= [
-        [button_delete_user, button_set_admin]
-    ]
-)
-# product_inline_keyboard = aiogram.types.InlineKeyboardButton(
-    # inline_keyboard=[
-        # []
-    # ]
-# )

@@ -1,11 +1,21 @@
-import aiogram 
+import aiogram
 
-button_start = aiogram.types.KeyboardButton(text = "START")
+start_game = aiogram.types.KeyboardButton(text = "Почати гру")
+cross_button = aiogram.types.KeyboardButton(text = "Хрестик")
+zero_button = aiogram.types.KeyboardButton(text = "Нолик")
 
-button_users = aiogram.types.InlineKeyboardButton(text="GET USERS", callback_data= "user")
-button_products = aiogram.types.InlineKeyboardButton(text="GET PRODUCTS", callback_data="products")
-button_cart = aiogram.types.InlineKeyboardButton(text="GET CART", callback_data="cart")
-button_add_product = aiogram.types.InlineKeyboardButton(text="ADD PRODUCT", callback_data="add_product")
+list_inline_buttons = []
+list_step = []
+# inline_information_button = aiogram.types.InlineKeyboardButton(text = "ходить", callback_data = "0")
 
-button_delete_user = aiogram.types.InlineKeyboardButton(text = "DELETE USER", callback_data = "delete_user" )
-button_set_admin = aiogram.types.InlineKeyboardButton(text = "SET ADMIN", callback_data= "admin_user")
+number = 0
+row = 0
+for count in range(0, 9):
+    
+    inline_button = aiogram.types.InlineKeyboardButton(text = " ", callback_data = f"{count}", number_button = number, row_button = row)
+    number += 1
+    if number > 2:
+        number = 0
+        row += 1
+    list_inline_buttons.append(inline_button)
+    

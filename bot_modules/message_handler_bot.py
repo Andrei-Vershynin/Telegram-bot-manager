@@ -1,17 +1,18 @@
 from .dispatcher_bot import dispatcher
 from aiogram.types import Message
-from .create_bot import bot
-import os
-
-path_folder_images = os.path.abspath(__file__ + '/../../images')\
+from .keyboards_bot import main_keyboard, inline_main_keyboard
+from .buttons_bot import cross_button, zero_button, list_step, list_inline_buttons
 
 @dispatcher.message()
 async def message_handler(message: Message):
-    if message.photo:
-        print(f'photo = {message.photo[-1]}')
-        file_id = message.photo[-1].file_id
-        print(f"file_id = {file_id}")
-        photo = await bot.get_file(file_id = file_id)
-        photo_path = photo.file_path
-        await bot.download_file(file_path = photo_path, destination = f'{path_folder_images}/1.png')
-        
+    if message.text == "Почати гру":
+        main_keyboard.keyboard[0] = [cross_button, zero_button]
+        await message.answer(text = "Гру розпочато  Николай жучара", reply_markup= main_keyboard)
+    elif message.text.lower() == "хрестик" or message.text.lower() == "нолик":
+        list_step.append(message.text.lower())
+        count = 0
+        for inline_button in list_inline_buttons:
+            inline_button.text = ' '
+            inline_button.callback_data = f'{count}'
+            count += 1
+        await message.answer(text = f"Гравець грає за {message.text}", reply_markup= inline_main_keyboard)

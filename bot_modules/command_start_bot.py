@@ -1,10 +1,9 @@
 from aiogram.filters import CommandStart
+from aiogram.types import Message
 from .dispatcher_bot import dispatcher
-from aiogram.types import Message 
-from .keyboards_bot import inline_keyboard
+from .keyboards_bot import main_keyboard
 
 @dispatcher.message(CommandStart())
 async def bot_start(message: Message):
-    await message.answer(text= "Привіт, користувач", reply_markup= inline_keyboard)
-    for el in message:
-        print(el)
+    await message.answer(text = "Hi, User!", reply_markup= main_keyboard)
+    

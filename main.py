@@ -1,4 +1,5 @@
-import game_modules
+import bot_modules
+import asyncio
 
 if __name__ == "__main__":
-    game_modules.run_game()
+    asyncio.run(bot_modules.main())
